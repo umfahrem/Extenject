@@ -9,6 +9,7 @@ namespace Zenject
     // Zero parameters
     public class PlaceholderFactory<TValue> : PlaceholderFactoryBase<TValue>, IFactory<TValue>
     {
+        private List<TypeValuePair> m_List = new List<TypeValuePair>(0);
         // Note: Most of the time you should not override this method and should instead
         // use BindFactory<>.FromIFactory if you want to do some custom logic
 #if !NOT_UNITY3D
@@ -16,7 +17,7 @@ namespace Zenject
 #endif
         public virtual TValue Create()
         {
-            return CreateInternal(new List<TypeValuePair>());
+            return CreateInternal(m_List);
         }
 
         protected sealed override IEnumerable<Type> ParamTypes
@@ -34,6 +35,10 @@ namespace Zenject
     public class PlaceholderFactory<TParam1, TValue>
         : PlaceholderFactoryBase<TValue>, IFactory<TParam1, TValue>
     {
+        private List<TypeValuePair> m_List = new List<TypeValuePair>(1)
+        {
+            InjectUtil.CreateTypePair(0)
+        };
         // Note: Most of the time you should not override this method and should instead
         // use BindFactory<>.FromIFactory if you want to do some custom logic
 #if !NOT_UNITY3D
@@ -41,11 +46,8 @@ namespace Zenject
 #endif
         public virtual TValue Create(TParam1 param)
         {
-            return CreateInternal(
-                new List<TypeValuePair>
-                {
-                    InjectUtil.CreateTypePair(param)
-                });
+            m_List[0] = InjectUtil.CreateTypePair(param);
+            return CreateInternal(m_List);
         }
 
         protected sealed override IEnumerable<Type> ParamTypes
@@ -63,6 +65,11 @@ namespace Zenject
     public class PlaceholderFactory<TParam1, TParam2, TValue>
         : PlaceholderFactoryBase<TValue>, IFactory<TParam1, TParam2, TValue>
     {
+        private List<TypeValuePair> m_List = new List<TypeValuePair>(2)
+        {
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0)
+        };
         // Note: Most of the time you should not override this method and should instead
         // use BindFactory<>.FromIFactory if you want to do some custom logic
 #if !NOT_UNITY3D
@@ -70,12 +77,9 @@ namespace Zenject
 #endif
         public virtual TValue Create(TParam1 param1, TParam2 param2)
         {
-            return CreateInternal(
-                new List<TypeValuePair>
-                {
-                    InjectUtil.CreateTypePair(param1),
-                    InjectUtil.CreateTypePair(param2)
-                });
+            m_List[0] = InjectUtil.CreateTypePair(param1);
+            m_List[1] = InjectUtil.CreateTypePair(param2);
+            return CreateInternal(m_List);
         }
 
         protected sealed override IEnumerable<Type> ParamTypes
@@ -97,6 +101,12 @@ namespace Zenject
     public class PlaceholderFactory<TParam1, TParam2, TParam3, TValue>
         : PlaceholderFactoryBase<TValue>, IFactory<TParam1, TParam2, TParam3, TValue>
     {
+        private List<TypeValuePair> m_List = new List<TypeValuePair>(3)
+        {
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0)
+        };
         // Note: Most of the time you should not override this method and should instead
         // use BindFactory<>.FromIFactory if you want to do some custom logic
 #if !NOT_UNITY3D
@@ -104,13 +114,10 @@ namespace Zenject
 #endif
         public virtual TValue Create(TParam1 param1, TParam2 param2, TParam3 param3)
         {
-            return CreateInternal(
-                new List<TypeValuePair>
-                {
-                    InjectUtil.CreateTypePair(param1),
-                    InjectUtil.CreateTypePair(param2),
-                    InjectUtil.CreateTypePair(param3)
-                });
+            m_List[0] = InjectUtil.CreateTypePair(param1);
+            m_List[1] = InjectUtil.CreateTypePair(param2);
+            m_List[2] = InjectUtil.CreateTypePair(param3);
+            return CreateInternal(m_List);
         }
 
         protected sealed override IEnumerable<Type> ParamTypes
@@ -133,6 +140,13 @@ namespace Zenject
     public class PlaceholderFactory<TParam1, TParam2, TParam3, TParam4, TValue>
         : PlaceholderFactoryBase<TValue>, IFactory<TParam1, TParam2, TParam3, TParam4, TValue>
     {
+        private List<TypeValuePair> m_List = new List<TypeValuePair>(4)
+        {
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0)
+        };
         // Note: Most of the time you should not override this method and should instead
         // use BindFactory<>.FromIFactory if you want to do some custom logic
 #if !NOT_UNITY3D
@@ -140,14 +154,11 @@ namespace Zenject
 #endif
         public virtual TValue Create(TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4)
         {
-            return CreateInternal(
-                new List<TypeValuePair>
-                {
-                    InjectUtil.CreateTypePair(param1),
-                    InjectUtil.CreateTypePair(param2),
-                    InjectUtil.CreateTypePair(param3),
-                    InjectUtil.CreateTypePair(param4)
-                });
+            m_List[0] = InjectUtil.CreateTypePair(param1);
+            m_List[1] = InjectUtil.CreateTypePair(param2);
+            m_List[2] = InjectUtil.CreateTypePair(param3);
+            m_List[3] = InjectUtil.CreateTypePair(param4);
+            return CreateInternal(m_List);
         }
 
         protected sealed override IEnumerable<Type> ParamTypes
@@ -172,22 +183,27 @@ namespace Zenject
     public class PlaceholderFactory<TParam1, TParam2, TParam3, TParam4, TParam5, TValue>
         : PlaceholderFactoryBase<TValue>, IFactory<TParam1, TParam2, TParam3, TParam4, TParam5, TValue>
     {
-        // Note: Most of the time you should not override this method and should instead
-        // use BindFactory<>.FromIFactory if you want to do some custom logic
+        private List<TypeValuePair> m_List = new List<TypeValuePair>(5)
+        {
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0)
+        };
+    // Note: Most of the time you should not override this method and should instead
+    // use BindFactory<>.FromIFactory if you want to do some custom logic
 #if !NOT_UNITY3D
-        [NotNull]
+    [NotNull]
 #endif
         public virtual TValue Create(TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5)
         {
-            return CreateInternal(
-                new List<TypeValuePair>
-                {
-                    InjectUtil.CreateTypePair(param1),
-                    InjectUtil.CreateTypePair(param2),
-                    InjectUtil.CreateTypePair(param3),
-                    InjectUtil.CreateTypePair(param4),
-                    InjectUtil.CreateTypePair(param5)
-                });
+            m_List[0] = InjectUtil.CreateTypePair(param1);
+            m_List[1] = InjectUtil.CreateTypePair(param2);
+            m_List[2] = InjectUtil.CreateTypePair(param3);
+            m_List[3] = InjectUtil.CreateTypePair(param4);
+            m_List[4] = InjectUtil.CreateTypePair(param5);
+            return CreateInternal(m_List);
         }
 
         protected sealed override IEnumerable<Type> ParamTypes
@@ -213,6 +229,15 @@ namespace Zenject
     public class PlaceholderFactory<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TValue>
         : PlaceholderFactoryBase<TValue>, IFactory<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TValue>
     {
+        private List<TypeValuePair> m_List = new List<TypeValuePair>(6)
+        {
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0)
+        };
         // Note: Most of the time you should not override this method and should instead
         // use BindFactory<>.FromIFactory if you want to do some custom logic
 #if !NOT_UNITY3D
@@ -220,16 +245,13 @@ namespace Zenject
 #endif
         public virtual TValue Create(TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6)
         {
-            return CreateInternal(
-                new List<TypeValuePair>
-                {
-                    InjectUtil.CreateTypePair(param1),
-                    InjectUtil.CreateTypePair(param2),
-                    InjectUtil.CreateTypePair(param3),
-                    InjectUtil.CreateTypePair(param4),
-                    InjectUtil.CreateTypePair(param5),
-                    InjectUtil.CreateTypePair(param6)
-                });
+            m_List[0] = InjectUtil.CreateTypePair(param1);
+            m_List[1] = InjectUtil.CreateTypePair(param2);
+            m_List[2] = InjectUtil.CreateTypePair(param3);
+            m_List[3] = InjectUtil.CreateTypePair(param4);
+            m_List[4] = InjectUtil.CreateTypePair(param5);
+            m_List[5] = InjectUtil.CreateTypePair(param6);
+            return CreateInternal(m_List);
         }
 
         protected sealed override IEnumerable<Type> ParamTypes
@@ -256,23 +278,33 @@ namespace Zenject
     public class PlaceholderFactory<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TValue>
         : PlaceholderFactoryBase<TValue>, IFactory<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TValue>
     {
+        private List<TypeValuePair> m_List = new List<TypeValuePair>(10)
+        {
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0),
+            InjectUtil.CreateTypePair(0)
+        };
         // If you were hoping to override this method, use BindFactory<>.ToFactory instead
         public virtual TValue Create(TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7, TParam8 param8, TParam9 param9, TParam10 param10)
         {
-            return CreateInternal(
-                new List<TypeValuePair>
-                {
-                    InjectUtil.CreateTypePair(param1),
-                    InjectUtil.CreateTypePair(param2),
-                    InjectUtil.CreateTypePair(param3),
-                    InjectUtil.CreateTypePair(param4),
-                    InjectUtil.CreateTypePair(param5),
-                    InjectUtil.CreateTypePair(param6),
-                    InjectUtil.CreateTypePair(param7),
-                    InjectUtil.CreateTypePair(param8),
-                    InjectUtil.CreateTypePair(param9),
-                    InjectUtil.CreateTypePair(param10)
-                });
+            m_List[0] = InjectUtil.CreateTypePair(param1);
+            m_List[1] = InjectUtil.CreateTypePair(param2);
+            m_List[2] = InjectUtil.CreateTypePair(param3);
+            m_List[3] = InjectUtil.CreateTypePair(param4);
+            m_List[4] = InjectUtil.CreateTypePair(param5);
+            m_List[5] = InjectUtil.CreateTypePair(param6);
+            m_List[6] = InjectUtil.CreateTypePair(param7);
+            m_List[7] = InjectUtil.CreateTypePair(param8);
+            m_List[8] = InjectUtil.CreateTypePair(param9);
+            m_List[9] = InjectUtil.CreateTypePair(param10);
+            return CreateInternal(m_List);
         }
 
         protected sealed override IEnumerable<Type> ParamTypes
