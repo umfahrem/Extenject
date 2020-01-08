@@ -1,0 +1,8 @@
+{ 
+    "name": "com.svermeulen.extenject",  
+    "displayName": "Extenject", 
+    "description": "Extenject is a lightweight highly performant dependency injection framework built specifically to target Unity 3D",
+    "version": "9.1.1", 
+    "license": "MIT", 
+    "dependencies": {} 
+}
